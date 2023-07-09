@@ -3,11 +3,11 @@ package org.demre.myrecyclerview;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import org.demre.myrecyclerview.databinding.ItemListBinding;
 import java.util.List;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<String> words;//Crea una lista de String
     public MyAdapter(List<String> datos) {
