@@ -1,7 +1,9 @@
 package org.demre.myrecyclerview;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,8 +12,7 @@ import org.demre.myrecyclerview.databinding.ItemListBinding;
 import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<String> words;//Crea una lista de String
-    public MyAdapter(List<String> datos) {
-        this.words = datos;}
+    public MyAdapter(List<String> datos) {this.words = datos;}
 
     @NonNull
     @Override//¿Que hago cuando quiero crear un nuevo ViewHolder?
@@ -33,11 +34,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return words.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView textHolder;
         public ViewHolder(ItemListBinding binding) {//Generar el constructor con click derecho
             super(binding.getRoot());
             textHolder = binding.txtViewItem;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getLayoutPosition();
+            String elementos = words.get(position);
+            words.set(position, "Seleccionado - " + elementos);  notifyDataSetChanged();
         }
     }
 }
